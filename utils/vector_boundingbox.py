@@ -4,8 +4,11 @@ import argparse
 
 import json
 import fiona
+import pyproj
+import shapely
 from shapely.geometry import shape, box
-import shapely.wkt
+from shapely.ops import transform
+
 
 def get_feature(ds, fid):
     # read only the selected feature from the dataset
@@ -17,6 +20,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--format', default='wkt', help='output format')
     parser.add_argument('--fid', default=0, help='feature id')
+    parser.add_argument('--latlong', default=False, action='store_true', help='reproject to Lat/Long coordinates (WGS84)')
     parser.add_argument('input', metavar='input', help='path to dataset')
     args = parser.parse_args()
     
@@ -31,9 +35,13 @@ def main():
 
     # convert bounds to Polygon
     bounds = shape(f['geometry']).bounds
-    p = box(bounds[0], bounds[1], bounds[2], bounds[3])
+    geom = box(bounds[0], bounds[1], bounds[2], bounds[3])
 
-    geom = shapely.wkt.loads(p.wkt)
+    if (args.latlong):
+        projection = pyproj.Transformer.from_crs(ds.crs, pyproj.CRS('EPSG:4326'), always_xy=True).transform
+        projected = transform(projection, geom) 
+        geom = projected
+
     if format.lower() == 'geojson':
         geojson = shapely.geometry.mapping(geom)
         geom = json.dumps(geojson)
