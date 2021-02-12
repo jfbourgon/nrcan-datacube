@@ -5,3 +5,4 @@ rasterio
 pyproj
 pystac
 geopandas
+requests

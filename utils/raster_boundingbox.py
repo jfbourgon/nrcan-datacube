@@ -24,7 +24,7 @@ def main():
 
     # convert bounds to Polygon
     bounds = ds.bounds
-    geom = box(bounds[0], bounds[1], bounds[2], bounds[3])
+    geom = box(*bounds)
     
     if (args.latlong):
         projection = pyproj.Transformer.from_crs(ds.crs, pyproj.CRS('EPSG:4326'), always_xy=True).transform
