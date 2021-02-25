@@ -45,11 +45,12 @@ def main():
     }
     
     with fiona.open(output,'w','GeoJSON',schema, crs=fiona.crs.from_epsg(3979)) as filename:
+        index = 0
         for i in container:
-            index = 0
+            index += 1
             filename.write({
                 'geometry': mapping(i),
-                'properties': {'id': index+1}
+                'properties': {'id': index}
             })
 
 if __name__ == "__main__":
