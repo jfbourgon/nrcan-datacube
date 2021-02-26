@@ -6,7 +6,7 @@
 * generate statistics on all overview image levels
 * compare and contrast results statistically and visually
 * make recommendations
-* can be done using R or GDAL
+* can be done using python, R or GDAL
 * capture work, code, logic, findings in jupyter notebook
 ## Purpose of work
 This work serves two purposes:
