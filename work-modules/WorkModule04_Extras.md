@@ -25,3 +25,7 @@ Query optimisation
 * develop manual test and leaflet client
 * develop manual test in qgis
 * test gt – wms vs mapserver wms
+## Leaflet projections
+* based on module 2
+* experiment with plotting different standard leaflet projections
+* experiment with plotting custom projections
