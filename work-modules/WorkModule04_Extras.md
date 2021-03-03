@@ -30,3 +30,4 @@ Query optimisation
 * experiment with plotting different standard ipyleaflet projections (https://ipyleaflet.readthedocs.io/en/latest/api_reference/map.html)
 * experiment with plotting custom ipyleaflet projections (https://github.com/jupyter-widgets/ipyleaflet/issues/612)  (http://epsg.io/)
 * experiment with plotting projections using matplotlib (https://matplotlib.org/3.2.1/gallery/subplots_axes_and_figures/geo_demo.html)
+* experiment with plotting custom projections using matplotlib (https://matplotlib.org/1.4.0/devel/add_new_projection.html)
