@@ -42,14 +42,16 @@ def main():
         projected = transform(projection, geom) 
         geom = projected
 
-    if format.lower() == 'geojson':
-        geojson = shapely.geometry.mapping(geom)
-        geom = json.dumps(geojson)
-        
+            
     print("BBOX:")
     print(geom.bounds)
+    
     print("Envelop:")
-    print(geom)
+    if format.lower() == 'geojson':
+        geojson = shapely.geometry.mapping(geom)
+        print(json.dumps(geojson))
+    else:
+        print(geom.wkt)
 
 if __name__ == "__main__":
     main()
