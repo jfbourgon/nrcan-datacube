@@ -25,9 +25,35 @@ Query optimisation
 * develop manual test and leaflet client
 * develop manual test in qgis
 * test gt – wms vs mapserver wms
-## Python Map projections
-* based on module 2
-* experiment with plotting different standard ipyleaflet projections (https://ipyleaflet.readthedocs.io/en/latest/api_reference/map.html)
-* experiment with plotting custom ipyleaflet projections (https://github.com/jupyter-widgets/ipyleaflet/issues/612)  (http://epsg.io/)
-* experiment with plotting projections using matplotlib (https://matplotlib.org/3.2.1/gallery/subplots_axes_and_figures/geo_demo.html)
-* experiment with plotting custom projections using matplotlib (https://matplotlib.org/1.4.0/devel/add_new_projection.html)
+## Different methods to stream a portion of a cog
+* test difference in download time and difference in data sampling between
+* rasterio read with user defined window 
+    ```
+    llbox=box(miny,minx,maxy,maxx)
+    coords_window=shape(transform_geom('EPSG:4326',cog.crs,mapping(llbox)))
+    wb=coords_window.bounds
+    sample_window=cog.window(wb[0],wb[1],wb[2],wb[3])
+    sample_cog=cog.read(1,window=sample_window)
+    ```
+* rasterio read with image defined window blocks
+https://rasterio.readthedocs.io/en/latest/topics/windowed-rw.html#blocks
+* gdal 
+    ```
+    gdalwarp --config CPL_VSIL_CURL_ALLOWED_EXTENSIONS ".tif" -t_srs epsg:3979 -te_srs epsg:4326 -te -68.5 68.25 -63.5 63.25 -tr 16 16 -ovr NONE -tap /vsicurl/http://datacube-prod-data-public.s3.ca-central-1.amazonaws.com/store/dem/cdem/cdem-11-dem.tif dem-source.tif
+    ```
+* http get range request
+    ```
+    headers={"Range": "bytes=%s-%s"%(current_min+1,byte_max)}
+    resp = http.request('GET', url,params,headers)
+    print(resp.status, resp.reason)
+    print(resp.data)
+    ```
+
+## Athematic to thematic overview creation
+* Use athematic data to create themed / classified data
+* test difference between overviews created from thematic layer vs overviews created from same level overview of athematic data
+## Rasterio Window Utilities Test
+https://rasterio.readthedocs.io/en/latest/topics/windowed-rw.html#window-utilities
+https://rasterio.readthedocs.io/en/latest/topics/windowed-rw.html#blocks
+* test accessing windows with and without aligning to internal block_size
+* test generating statistics on select area of base imagery and overviews
