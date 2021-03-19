@@ -20,6 +20,7 @@
 ## https://numpy.org/doc/stable/reference/routines.statistics.html
 ## https://gdal.org/drivers/raster/gtiff.html#georeferencing
 ## https://rasterio.readthedocs.io/en/latest/topics/plotting.html
+## https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html
 ##############################
 ##  TODO:
 ##  modify so it runs on args passed in as parameters
@@ -34,7 +35,7 @@ from datetime import datetime
 def main():
     print("start")
     print(datetime.now())
-    
+######   Test cases different dem tiles url and appropriate bbox in lon,lat EPSG:4326
 ##    # define the select window longitude and latitude
 ####    url="http://datacube-prod-data-public.s3.ca-central-1.amazonaws.com/store/dem/cdem/cdem-25-dem.tif"
 ####    miny=-64.7
@@ -110,44 +111,56 @@ def main():
 
 
     ###################### getting histogram statistics using rasterio, matplotlib and numpy
-    ### hacked from:
-
     import rasterio 
-    from rasterio.plot import show_hist
+    from rasterio.plot import show_hist, show
     from matplotlib import pyplot
     import numpy
     # if using all code from above pass file name to sample, if not then define sample
     ##sample=file_name 
     sample='C:\\users\\nbrown\\documents\\datacube\\stage\\example-code\\sample-cdem-7-dem.tif'
     cog_sample=rasterio.open(sample)
-    print(cog_sample.bounds)
-    print(cog_sample.crs)
-    print(cog_sample.dtypes[0])
-    print(cog_sample.crs)
-    print(cog_sample.transform)
-    print(cog_sample.nodata)
-    print(cog_sample.shape)
-    print(cog_sample.meta)
-    # view dimensions of image
-    print(cog_sample.shape)
-    #put histogram
-    show_hist(cog_sample, bins=50, lw=0.0, stacked=False, alpha=0.3,histtype='stepfilled', title="Original sample Histogram")
-    #get stats from array
-
+    print("bounds: %s"%(str(cog_sample.bounds)))
+    print("crs: %s"%(cog_sample.crs))
+    print("data type: %s"%(str(cog_sample.dtypes[0])))
+    print("transform: %s"%str((cog_sample.transform)))
+    print("pixel resolution from transform: %s"%(str(cog_sample.transform[0])))
+    print("no data: %s"%(str(cog_sample.nodata)))
+    print("image size in pixes: %s" %(str(cog_sample.shape)))
+    print("cog header info: %s"%(cog_sample.meta))
     
+    #make a figure with two axes subplot
+    fig, (aximage, axhist) = pyplot.subplots(1, 2, figsize=(7,4))
+    figtitle="original sample cog and histogram"
+    fig.suptitle(figtitle,fontsize=10)
+
+    #create histogram using rasterio show histogram, pass axes subplot handle to axhist
+    bins=50
+    show_hist(cog_sample, bins=bins, lw=0.0, 
+              stacked=False, alpha=0.3,
+              histtype='stepfilled',
+              ax=axhist)
+    axhist.set_title('')
+    axhist.set_xlabel('elevation (m)')
+    axhist.set_ylabel('')
+    axhist.legend('')
+    #create display image passing axes subplot handle to aximage
+    show(cog_sample, cmap='gray',transform=cog_sample.transform, ax=aximage)
+    #save the figure
+    fname='./im-hist-test.png'
+    pyplot.savefig(fname,format='png')
+    #plot the figure
+##    pyplot.show()
+
+    #get stats from array  
     cog=rasterio.open(sample)
-    #get cog header info
-    print(cog.meta)
     #read cog into numpy array
     cog_ar=cog.read(1)
-
     #min
     print(numpy.amin(cog_ar))
     #max
     print(numpy.amax(cog_ar))
     # plot the image
-    pyplot.imshow(cog_ar, cmap='pink')
-    pyplot.show()
+    #pyplot.show()
     #close image read
     cog_sample.close()
     print("finished")

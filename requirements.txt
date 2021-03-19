@@ -8,3 +8,4 @@ geopandas
 requests
 matplotlib
 ipyleaflet
+numpy
