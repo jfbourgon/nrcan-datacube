@@ -21,6 +21,7 @@
 ## https://gdal.org/drivers/raster/gtiff.html#georeferencing
 ## https://rasterio.readthedocs.io/en/latest/topics/plotting.html
 ## https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html
+## https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html
 ##############################
 ##  TODO:
 ##  modify so it runs on args passed in as parameters
@@ -114,6 +115,7 @@ def main():
     import rasterio 
     from rasterio.plot import show_hist, show
     from matplotlib import pyplot
+    from mpl_toolkits.mplot3d import Axes3D
     import numpy
     # if using all code from above pass file name to sample, if not then define sample
     ##sample=file_name 
@@ -151,10 +153,31 @@ def main():
     #plot the figure
 ##    pyplot.show()
 
+######### 3D plots start
+##    # create a 3d axes
+##    fig = pyplot.figure()
+##    ax = fig.add_subplot(111, projection='3d')
+##    #create a 1D array for x /columns / longitude
+##    x=numpy.arange(cog_ar.shape[1])
+##    #create a 1D array for y/ rows / lattitude
+##    y=numpy.arange(cog_ar.shape[0])
+##    # merge two 1D arrays in a 2d xy array
+##    X,Y=numpy.meshgrid(x,y)
+##    # replace no data value with 'not a number'
+##    # could also try empty
+##    cog_ar=numpy.where(cog_ar<-32766,numpy.nan,cog_ar)
+##    cog_ar=numpy.where(cog_ar<-32766,numpy.nan,cog_ar)
+##    ax.plot_wireframe(X,Y,cog_ar)
+##    ax.plot_surface(X,Y,cog_ar)
+##    # plot the 3d surface
+##    pyplot.show()
+########  3D plots end
+
+                   
     #get stats from array  
-    cog=rasterio.open(sample)
+    cog_sample=rasterio.open(sample)
     #read cog into numpy array
-    cog_ar=cog.read(1)
+    cog_ar=cog_sample.read(1)
     #min
     print(numpy.amin(cog_ar))
     #max
