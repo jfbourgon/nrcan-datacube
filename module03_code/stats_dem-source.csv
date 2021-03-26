@@ -1,0 +1,2 @@
+Name,Resampling Method,Overview,Driver,Data Type,crs,Width,Height,Nodata Pixels,Pixels with Values,Pixel Size,Min,Max,Range,Mean,Median,Std,Var
+dem-source,dem-source,32,GTiff,int16,EPSG:3979,13635,6334,4074170,82289920,16.0,527.0,5942.0,5415.0,1674.2664313320513,1563.0,655.3724116231318,429512.9979167197

@@ -1,0 +1,2 @@
+Name,Resampling Method,Overview,Driver,Data Type,crs,Width,Height,Nodata Pixels,Pixels with Values,Pixel Size,Min,Max,Range,Mean,Median,Std,Var
+cubicspline,cubicspline,32,GTiff,int16,None,427,198,3618,80928,1.0,546.0,5738.0,5192.0,1676.5656633056544,1565.0,651.6459837601748,424642.488150766
