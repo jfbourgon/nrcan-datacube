@@ -17,7 +17,7 @@ Purpose:
 Create overviews using different resampling methods and export the thumbnails / histograms / statistics of each image
     
 Example of command:
-    
+C:/Users/Owner/COOP4/PortableGit/nrcan-datacube/all_Python_scripts/module03_resample.py C:/Users/Owner/COOP4/PortableGit/nrcan-datacube/all_Python_scripts/test1/dem-source_22.tif 64    
 '''
 
 def main():
