@@ -1,0 +1,7 @@
+stats: 
+bound: BoundingBox(left=0.0, bottom=198.0, right=427.0, top=0.0)
+crs: None
+dtype: int16transform: | 1.00, 0.00, 0.00|
+| 0.00, 1.00, 0.00|
+| 0.00, 0.00, 1.00|nodata: -32767.0shape: (198, 427)metadata: {'driver': 'GTiff', 'dtype': 'int16', 'nodata': -32767.0, 'width': 427, 'height': 198, 'count': 1, 'crs': None, 'transform': Affine(1.0, 0.0, 0.0,
+       0.0, 1.0, 0.0)}

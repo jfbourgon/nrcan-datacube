@@ -1,0 +1,7 @@
+stats: 
+bound: BoundingBox(left=-2221472.0, bottom=2014704.0, right=-2003312.0, top=2116048.0)
+crs: EPSG:3979
+dtype: int16transform: | 16.00, 0.00,-2221472.00|
+| 0.00,-16.00, 2116048.00|
+| 0.00, 0.00, 1.00|nodata: -32767.0shape: (6334, 13635)metadata: {'driver': 'GTiff', 'dtype': 'int16', 'nodata': -32767.0, 'width': 13635, 'height': 6334, 'count': 1, 'crs': CRS.from_epsg(3979), 'transform': Affine(16.0, 0.0, -2221472.0,
+       0.0, -16.0, 2116048.0)}
