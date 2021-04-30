@@ -1,2 +1,0 @@
-Name,Resampling Method,Overview,Driver,Data Type,crs,Width,Height,Nodata Pixels,Pixels with Values,Pixel Size,Min,Max,Range,Mean,Median,Std,Var
-average,average_magphase,32,GTiff,int16,None,427,198,3897,80649,1.0,533.0,5781.0,5248.0,1674.8990316060956,1564.0,653.9166204734693,427606.9465314433

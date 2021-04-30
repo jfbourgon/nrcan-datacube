@@ -1,2 +1,0 @@
-Name,Resampling Method,Overview,Driver,Data Type,crs,Width,Height,Nodata Pixels,Pixels with Values,Pixel Size,Min,Max,Range,Mean,Median,Std,Var
-gauss,gauss,32,GTiff,int16,None,427,198,3968,80578,1.0,529.0,5827.0,5298.0,1674.3918935689642,1563.0,655.5312527418616,429721.22332131444
